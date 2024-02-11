@@ -3,6 +3,8 @@ import sys
 
 import argparse
 
+from commands.command_factory import CommandsFactory
+
 VALID_COMMANDS = ['wc']
 
 
@@ -55,6 +57,8 @@ def main():
         check_file_exists(args.input_file)
     except (InvalidCommandError, FileNotFoundError) as e:
         print_error_and_exit(str(e))
+
+    command_instance = CommandsFactory.create_command_instance(args.command)
 
 
 if __name__ == "__main__":

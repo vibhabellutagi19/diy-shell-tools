@@ -6,7 +6,8 @@ from commands.command_factory import CommandsFactory
 class TestWordCount(unittest.TestCase):
     def setUp(self):
         """Set up for the test"""
-        self.wc_instance = CommandsFactory.create_command_instance('wc')
+        self.options = '-c'
+        self.wc_instance = CommandsFactory.create_command_instance('wc', self.options)
 
     def test_valid_options(self):
         """Test valid options for the wc command"""
