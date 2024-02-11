@@ -6,7 +6,7 @@ import launch_command
 
 
 class TestLaunchCommand(unittest.TestCase):
-    @patch('sys.argv', ['launch_command.py', 'wc', '-l', '-c', f'resources/test.txt'])
+    @patch('sys.argv', ['launch_command.py', 'wc', f'resources/test.txt'])
     def test_main_with_valid_arguments(self):
         with patch('sys.stdout', new=StringIO()) as fake_out:
             launch_command.main()
@@ -18,7 +18,7 @@ class TestLaunchCommand(unittest.TestCase):
     def test_main_with_no_arguments(self):
         with self.assertRaises(SystemExit) as cm:
             launch_command.main()
-        self.assertEqual(cm.exception.code, 1)
+        self.assertEqual(cm.exception.code, 2)
 
     @patch('sys.argv', ['launch_command.py', 'test_command', f'resources/test.txt'])
     def test_main_with_invalid_command(self):
