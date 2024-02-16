@@ -7,14 +7,10 @@ from tools.wc.word_count import InvalidOptionError
 class TestWordCount(unittest.TestCase):
     def setUp(self):
         """Set up for the test"""
-        self.valid_options = ['-c']
-        self.invalid_options = ['-a']
-        self.invalid_wc_instance = CommandsFactory.create_command_instance('wc', self.invalid_options)
-        self.wc_instance = CommandsFactory.create_command_instance('wc', self.valid_options)
+        self.test_file = "resources/test.txt"
 
     def test_valid_options(self):
         """Test valid options for the wc command"""
-
         try:
             self.wc_instance.validate_options()
         except Exception as e:
@@ -23,6 +19,8 @@ class TestWordCount(unittest.TestCase):
             self.assertTrue(True, "No exception raised for valid options")
 
     def test_invalid_options(self):
+        self.invalid_options = ['-a']
+        self.invalid_wc_instance = CommandsFactory.create_command_instance('wc', self.invalid_options)
         """Test invalid options for the wc command"""
         with self.assertRaises(InvalidOptionError) as context:
             self.invalid_wc_instance.validate_options()
@@ -31,13 +29,19 @@ class TestWordCount(unittest.TestCase):
 
     def test_options_c(self):
         """Test the -c option: number of bytes in a file"""
-        file_path = "resources/test.txt"
+        self.c_options = ['-c']
+        self.wc_instance = CommandsFactory.create_command_instance('wc', self.c_options)
         expected_output = 335095
-        actual_output = self.wc_instance.execute(file_path)
+        actual_output = self.wc_instance.execute(self.test_file)
         self.assertEqual(expected_output, actual_output)
 
     def test_options_l(self):
         """Test the -l option: number of lines in a file"""
+        self.options_l = ['-l']
+        self.wc_instance = CommandsFactory.create_command_instance('wc', self.options_l)
+        expected_output = 7145
+        actual_output = self.wc_instance.execute(self.test_file)
+        self.assertEqual(expected_output, actual_output)
 
     def test_options_w(self):
         """Test the -w option: number of words in a file"""

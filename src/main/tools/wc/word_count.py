@@ -41,6 +41,9 @@ class WordCount(BaseCommand):
                 if option == self.labels.c:
                     count_bytes = stats.count_bytes()
                     return count_bytes
+                if option == self.labels.l:
+                    count_lines = stats.count_lines()
+                    return count_lines
                 
         except InvalidOptionError as e:
             print(e)

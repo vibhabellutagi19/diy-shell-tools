@@ -11,4 +11,11 @@ class Stats:
     def count_bytes(self) -> int:
         """Count the number of bytes in a file"""
         return self.file_stats.st_size
+
+    def count_lines(self):
+        """count the number of lines in the file"""
+        with open(self.file_path, 'r') as input_file:
+            number_of_lines = len(input_file.readlines())
+            return number_of_lines
+
         
