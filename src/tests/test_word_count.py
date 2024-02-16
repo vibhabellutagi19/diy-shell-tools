@@ -1,7 +1,7 @@
 import unittest
 
-from commands.command_factory import CommandsFactory
-from commands.word_count import InvalidOptionError
+from base_commands.command_factory import CommandsFactory
+from tools.wc.word_count import InvalidOptionError
 
 
 class TestWordCount(unittest.TestCase):
@@ -31,6 +31,10 @@ class TestWordCount(unittest.TestCase):
 
     def test_options_c(self):
         """Test the -c option: number of bytes in a file"""
+        file_path = "resources/test.txt"
+        expected_output = 335095
+        actual_output = self.wc_instance.execute(file_path)
+        self.assertEqual(expected_output, actual_output)
 
     def test_options_l(self):
         """Test the -l option: number of lines in a file"""
