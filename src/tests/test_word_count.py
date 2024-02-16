@@ -45,6 +45,11 @@ class TestWordCount(unittest.TestCase):
 
     def test_options_w(self):
         """Test the -w option: number of words in a file"""
+        self.options_l = ['-w']
+        self.wc_instance = CommandsFactory.create_command_instance('wc', self.options_l)
+        expected_output = 58164
+        actual_output = self.wc_instance.execute(self.test_file)
+        self.assertEqual(expected_output, actual_output)
 
     def test_for_default_options(self):
         """Test for no options: no options are provided, which is the equivalent to the -c, -l and -w options """
