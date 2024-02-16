@@ -1,4 +1,5 @@
 import os
+import re
 
 
 class Stats:
@@ -17,5 +18,14 @@ class Stats:
         with open(self.file_path, 'r') as input_file:
             number_of_lines = len(input_file.readlines())
             return number_of_lines
+
+    def count_words(self):
+        """count the number of words in the file"""
+        with open(self.file_path, 'r') as input_file:
+            content = input_file.read()
+            words_and_space = re.split(r'\s+', content)
+            words = [word for word in words_and_space if word]
+            return len(words)
+            
 
         
