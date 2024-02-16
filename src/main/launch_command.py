@@ -3,7 +3,7 @@ import sys
 
 import argparse
 
-from commands.command_factory import CommandsFactory
+from base_commands.command_factory import CommandsFactory
 
 VALID_COMMANDS = ['wc']
 
@@ -24,13 +24,13 @@ def check_file_exists(file_path: str) -> str:
 
 
 def validate_command(command) -> str:
-    """Validate the command is one of the valid commands. If not, raise an InvalidCommandError.
+    """Validate the command is one of the valid base_commands. If not, raise an InvalidCommandError.
     :param command: The command to validate
     :return: The command if it is valid
     :raises InvalidCommandError: If the command is not valid
     """
     if command not in VALID_COMMANDS:
-        raise InvalidCommandError(f"Invalid command '{command}'. Valid commands are: {', '.join(VALID_COMMANDS)}")
+        raise InvalidCommandError(f"Invalid command '{command}'. Valid base_commands are: {', '.join(VALID_COMMANDS)}")
     return command
 
 
@@ -58,7 +58,7 @@ def main():
     except (InvalidCommandError, FileNotFoundError) as e:
         print_error_and_exit(str(e))
 
-    command_instance = CommandsFactory.create_command_instance(args.command)
+    command_instance = CommandsFactory.create_command_instance(args.command, args.options)
 
 
 if __name__ == "__main__":

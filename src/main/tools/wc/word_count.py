@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass
 
 from base_commands.base_command import BaseCommand
-from tools.word_count.get_stats import Stats
+from tools.wc.get_stats import Stats
 
 OPTIONS_ERROR_MSG = "Invalid option(s) ['{}']. Valid options are: {}"
 
