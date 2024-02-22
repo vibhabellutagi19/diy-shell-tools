@@ -5,7 +5,7 @@ from tools.wc.word_count import WordCount
 
 class CommandsFactory:
     command_classes = {
-        'wc': WordCount,
+        'ccwc': WordCount,
     }
 
     @staticmethod

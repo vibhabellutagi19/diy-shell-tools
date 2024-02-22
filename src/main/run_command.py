@@ -1,11 +1,13 @@
 import os
+import subprocess
 import sys
 
 import argparse
 
 from base_commands.command_factory import CommandsFactory
+from common.Utils import display_results
 
-VALID_COMMANDS = ['wc']
+VALID_COMMANDS = ['ccwc']
 
 
 class InvalidCommandError(Exception):
@@ -35,14 +37,14 @@ def validate_command(command) -> str:
 
 
 def print_error_and_exit(error_msg):
-    print(f"Usage: python launch_command.py <command> <options> <input_file>")
+    print(f"Usage: python run_command.py <command> <options> <input_file>")
     print(f"Error: {error_msg}", file=sys.stderr)
     sys.exit(1)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', metavar='command', type=str, help="Command to execute (e.g., wc)")
+    parser.add_argument('command', metavar='command', type=str, help="Command to execute (e.g., ccwc)")
     parser.add_argument('options', metavar='options', type=str, nargs='*', help='Options for the command')
     parser.add_argument('input_file', metavar='file', type=str, help='Input file to process')
 
@@ -59,6 +61,8 @@ def main():
         print_error_and_exit(str(e))
 
     command_instance = CommandsFactory.create_command_instance(args.command, args.options)
+    result = command_instance.execute(args.input_file)
+    display_results(result, args.input_file)
 
 
 if __name__ == "__main__":
