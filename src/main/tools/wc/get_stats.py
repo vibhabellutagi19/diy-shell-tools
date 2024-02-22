@@ -26,6 +26,12 @@ class Stats:
             words_and_space = re.split(r'\s+', content)
             words = [word for word in words_and_space if word]
             return len(words)
+
+    def count_chars(self):
+        """count the number of characters in the file"""
+        with open(self.file_path, 'r') as input_file:
+            content = input_file.read()
+            return len(content)
             
 
         

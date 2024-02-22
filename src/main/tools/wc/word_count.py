@@ -12,6 +12,7 @@ class ValidOptionsLabels:
     c: str = '-c'
     l: str = '-l'
     w: str = '-w'
+    m: str = '-m'
 
 
 class InvalidOptionError(Exception):
@@ -22,7 +23,7 @@ class WordCount(BaseCommand):
     def __init__(self, input_options):
         super().__init__(input_options)
         self.labels = ValidOptionsLabels()
-        self.valid_options = [self.labels.c, self.labels.l, self.labels.w]
+        self.valid_options = [self.labels.c, self.labels.l, self.labels.w, self.labels.m]
 
     def validate_options(self):
         for option in self.options:
@@ -47,6 +48,9 @@ class WordCount(BaseCommand):
                 if option == self.labels.w:
                     count_words = stats.count_words()
                     return count_words
+                if option == self.labels.m:
+                    count_chars = stats.count_chars()
+                    return count_chars
         except InvalidOptionError as e:
             print(e)
             return
