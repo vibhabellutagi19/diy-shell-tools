@@ -1,5 +1,7 @@
 import os
+import sys
 from dataclasses import dataclass
+from typing import Union, Tuple
 
 from base_commands.base_command import BaseCommand
 from tools.wc.get_stats import Stats
@@ -30,7 +32,7 @@ class WordCount(BaseCommand):
             if option not in self.valid_options:
                 raise InvalidOptionError(OPTIONS_ERROR_MSG.format(option, ', '.join(self.valid_options)))
 
-    def execute(self, file_path: str):
+    def execute(self, file_path: str) -> Union[int, Tuple]:
         """Execute the word count command on a file
         :param file_path: The path of the file to be processed
         """
@@ -38,22 +40,29 @@ class WordCount(BaseCommand):
         try:
             self.validate_options()
             stats = Stats(file_path)
-            for option in self.options:
-                if option == self.labels.c:
-                    count_bytes = stats.count_bytes()
-                    return count_bytes
-                if option == self.labels.l:
-                    count_lines = stats.count_lines()
-                    return count_lines
-                if option == self.labels.w:
-                    count_words = stats.count_words()
-                    return count_words
-                if option == self.labels.m:
-                    count_chars = stats.count_chars()
-                    return count_chars
+            if not self.options:
+                count_bytes = stats.count_bytes()
+                count_lines = stats.count_lines()
+                count_words = stats.count_words()
+                return count_bytes, count_lines, count_words
+            else:
+                for option in self.options:
+                    if option == self.labels.c:
+                        count_bytes = stats.count_bytes()
+                        return count_bytes
+                    if option == self.labels.l:
+                        count_lines = stats.count_lines()
+                        return count_lines
+                    if option == self.labels.w:
+                        count_words = stats.count_words()
+                        return count_words
+                    if option == self.labels.m:
+                        count_chars = stats.count_chars()
+                        return count_chars
+
         except InvalidOptionError as e:
             print(e)
-            return
+            sys.exit(1)
 
 
 
