@@ -22,9 +22,9 @@ class TestLaunchCommand(unittest.TestCase):
 
     @patch('sys.argv', ['run_command.py', 'test_command', f'resources/test.txt'])
     def test_main_with_invalid_command(self):
-        with self.assertRaises(SystemExit) as cm:
+        with self.assertRaises(run_command.InvalidCommandError) as cm:
             run_command.main()
-        self.assertEqual(cm.exception.code, 1)
+        self.assertEqual(cm.exception.args[0], "Invalid command 'test_command'. Valid commands are: ccwc")
 
     @patch('sys.argv', ['run_command.py', 'ccwc', 'non_existing_file.txt'])
     def test_main_with_non_existing_file(self):

@@ -35,14 +35,14 @@ class TestWordCount(unittest.TestCase):
         self.wc_instance = CommandsFactory.create_command_instance('ccwc', self.c_options)
         expected_output = 335095
         actual_output = self.wc_instance.execute(self.test_file)
-        self.assertEqual(expected_output, actual_output)
+        self.assertEqual(expected_output, actual_output[0])
 
     def test_options_l(self):
         """Test the -l option: number of lines in a file"""
         self.options_l = ['-l']
         self.wc_instance = CommandsFactory.create_command_instance('ccwc', self.options_l)
         expected_output = 7145
-        actual_output = self.wc_instance.execute(self.test_file)
+        actual_output = self.wc_instance.execute(self.test_file)[0]
         self.assertEqual(expected_output, actual_output)
 
     def test_options_w(self):
@@ -50,7 +50,7 @@ class TestWordCount(unittest.TestCase):
         self.options_l = ['-w']
         self.wc_instance = CommandsFactory.create_command_instance('ccwc', self.options_l)
         expected_output = 58164
-        actual_output = self.wc_instance.execute(self.test_file)
+        actual_output = self.wc_instance.execute(self.test_file)[0]
         self.assertEqual(expected_output, actual_output)
 
     def test_options_m(self):
@@ -58,13 +58,13 @@ class TestWordCount(unittest.TestCase):
         self.options_m = ['-m']
         self.wc_instance = CommandsFactory.create_command_instance('ccwc', self.options_m)
         expected_output = 332197
-        actual_output = self.wc_instance.execute(self.test_file)
+        actual_output = self.wc_instance.execute(self.test_file)[0]
         self.assertEqual(expected_output, actual_output)
 
     def test_for_default_options(self):
         """Test for no options: no options are provided, which is the equivalent to the -c, -l and -w options """
         self.default_options = []
         self.wc_instance = CommandsFactory.create_command_instance('ccwc', self.default_options)
-        expected_output = (335095, 7145, 58164)
+        expected_output = [335095, 7145, 58164]
         actual_output = (self.wc_instance.execute(self.test_file))
         self.assertEqual(expected_output, actual_output)

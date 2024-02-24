@@ -32,7 +32,7 @@ def validate_command(command) -> str:
     :raises InvalidCommandError: If the command is not valid
     """
     if command not in VALID_COMMANDS:
-        raise InvalidCommandError(f"Invalid command '{command}'. Valid base_commands are: {', '.join(VALID_COMMANDS)}")
+        raise InvalidCommandError(f"Invalid command '{command}'. Valid commands are: {', '.join(VALID_COMMANDS)}")
     return command
 
 
