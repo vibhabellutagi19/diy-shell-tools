@@ -323,7 +323,7 @@ drink will lose their savor. It is our wish that they shall not be
 beheaded."
 
 Sun Tzŭ replied: "Having once received His Majesty’s commission to be
-the general of his forces, there are certain commands of His Majesty
+the general of his forces, there are certain base_commands of His Majesty
 which, acting in that capacity, I am unable to accept."
 
 Accordingly, he had the two leaders beheaded, and straightway installed
@@ -3193,7 +3193,7 @@ II, p. 490.
 
 Chapter VII. MANŒUVERING
 
-1. Sun Tzŭ said: In war, the general receives his commands from the
+1. Sun Tzŭ said: In war, the general receives his base_commands from the
 sovereign.
 
 2. Having collected an army and concentrated his forces, he must blend
@@ -3655,7 +3655,7 @@ supposition to which the unusual shortness of the chapter lends some
 weight.]
 
 
-1. Sun Tzŭ said: In war, the general receives his commands from the
+1. Sun Tzŭ said: In war, the general receives his base_commands from the
 sovereign, collects his army and concentrates his forces.
 
 [Repeated from VII. § 1, where it is certainly more in place. It may
@@ -3712,7 +3712,7 @@ men in taking a town when the same expenditure of soldiers will gain a
 province." [1] ]
 
 
-positions which must not be contested, commands of the sovereign which
+positions which must not be contested, base_commands of the sovereign which
 must not be obeyed.
 
 [This is a hard saying for the Chinese, with their reverence for
@@ -3748,7 +3748,7 @@ advantageous lines of action, namely: "if a certain road is short, it
 must be followed; if an army is isolated, it must be attacked; if a
 town is in a parlous condition, it must be besieged; if a position can
 be stormed, it must be attempted; and if consistent with military
-operations, the ruler’s commands must be obeyed." But there are
+operations, the ruler’s base_commands must be obeyed." But there are
 circumstances which sometimes forbid a general to use these advantages.
 For instance, "a certain road may be the shortest way for him, but if
 he knows that it abounds in natural obstacles, or that the enemy has
@@ -3812,7 +3812,7 @@ and make trouble for them,
 should be made for the enemy affecting their "possessions," or, as we
 might say, "assets," which he considers to be "a large army, a rich
 exchequer, harmony amongst the soldiers, punctual fulfillment of
-commands." These give us a whip-hand over the enemy.]
+base_commands." These give us a whip-hand over the enemy.]
 
 
 and keep them constantly engaged;
@@ -4477,7 +4477,7 @@ hardness and tenderness."]
 
 This is a certain road to victory.
 
-44. If in training soldiers commands are habitually enforced, the army
+44. If in training soldiers base_commands are habitually enforced, the army
 will be well-disciplined; if not, its discipline will be bad.
 
 45. If a general shows confidence in his men but always insists on his
@@ -4819,7 +4819,7 @@ floss silk.]
 
 
 26. If, however, you are indulgent, but unable to make your authority
-felt; kind-hearted, but unable to enforce your commands; and incapable,
+felt; kind-hearted, but unable to enforce your base_commands; and incapable,
 moreover, of quelling disorder: then your soldiers must be likened to
 spoilt children; they are useless for any practical purpose.
 
@@ -6264,7 +6264,7 @@ result is waste of time and general stagnation.
 [This is one of the most perplexing passages in Sun Tzŭ. Ts’ao Kung
 says: "Rewards for good service should not be deferred a single day."
 And Tu Mu: "If you do not take opportunity to advance and reward the
-deserving, your subordinates will not carry out your commands, and
+deserving, your subordinates will not carry out your base_commands, and
 disaster will ensue." For several reasons, however, and in spite of the
 formidable array of scholars on the other side, I prefer the
 interpretation suggested by Mei Yao-ch’en alone, whose words I will
@@ -6282,7 +6282,7 @@ the good general cultivates his resources.
 [Tu Mu quotes the following from the _San Lueh_, ch. 2: "The warlike
 prince controls his soldiers by his authority, kits them together by
 good faith, and by rewards makes them serviceable. If faith decays,
-there will be disruption; if rewards are deficient, commands will not
+there will be disruption; if rewards are deficient, base_commands will not
 be respected."]
 
 

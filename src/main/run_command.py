@@ -1,9 +1,11 @@
+import argparse
 import os
 import sys
 
-import argparse
+from base_commands.command_factory import CommandsFactory
+from common.Utils import display_results
 
-VALID_COMMANDS = ['wc']
+VALID_COMMANDS = ['ccwc']
 
 
 class InvalidCommandError(Exception):
@@ -22,7 +24,7 @@ def check_file_exists(file_path: str) -> str:
 
 
 def validate_command(command) -> str:
-    """Validate the command is one of the valid commands. If not, raise an InvalidCommandError.
+    """Validate the command is one of the valid base_commands. If not, raise an InvalidCommandError.
     :param command: The command to validate
     :return: The command if it is valid
     :raises InvalidCommandError: If the command is not valid
@@ -33,16 +35,16 @@ def validate_command(command) -> str:
 
 
 def print_error_and_exit(error_msg):
-    print(f"Usage: python launch_command.py <command> <options> <input_file>")
+    print(f"Usage: python run_command.py <command> <options> <input_file>")
     print(f"Error: {error_msg}", file=sys.stderr)
     sys.exit(1)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', metavar='command', type=str, help="Command to execute (e.g., wc)")
-    parser.add_argument('options', metavar='options', type=str, nargs='*', help='Options for the command')
-    parser.add_argument('input_file', metavar='file', type=str, help='Input file to process')
+    parser.add_argument('command', type=validate_command, help='Command to execute (wc)')
+    parser.add_argument('options', nargs='*', help='Options for wc command')
+    parser.add_argument('input_file', help='Input file path')
 
     args = parser.parse_args()
     # If no arguments are provided, print help message and exit
@@ -55,6 +57,10 @@ def main():
         check_file_exists(args.input_file)
     except (InvalidCommandError, FileNotFoundError) as e:
         print_error_and_exit(str(e))
+
+    command_instance = CommandsFactory.create_command_instance(args.command, args.options)
+    result = command_instance.execute(args.input_file)
+    display_results(result, args.input_file)
 
 
 if __name__ == "__main__":

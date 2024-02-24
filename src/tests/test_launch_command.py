@@ -2,32 +2,32 @@ import unittest
 from io import StringIO
 from unittest.mock import patch
 
-import launch_command
+import run_command
 
 
 class TestLaunchCommand(unittest.TestCase):
-    @patch('sys.argv', ['launch_command.py', 'wc', f'resources/test.txt'])
+    @patch('sys.argv', ['run_command.py', 'ccwc', f'resources/test.txt'])
     def test_main_with_valid_arguments(self):
         with patch('sys.stdout', new=StringIO()) as fake_out:
-            launch_command.main()
+            run_command.main()
             output = fake_out.getvalue().strip()
-            expected_output = ""
+            expected_output = "335095 7145 58164 test.txt"
             self.assertEqual(output, expected_output)
 
-    @patch('sys.argv', ['launch_command.py'])
+    @patch('sys.argv', ['run_command.py'])
     def test_main_with_no_arguments(self):
         with self.assertRaises(SystemExit) as cm:
-            launch_command.main()
+            run_command.main()
         self.assertEqual(cm.exception.code, 2)
 
-    @patch('sys.argv', ['launch_command.py', 'test_command', f'resources/test.txt'])
+    @patch('sys.argv', ['run_command.py', 'test_command', f'resources/test.txt'])
     def test_main_with_invalid_command(self):
-        with self.assertRaises(SystemExit) as cm:
-            launch_command.main()
-        self.assertEqual(cm.exception.code, 1)
+        with self.assertRaises(run_command.InvalidCommandError) as cm:
+            run_command.main()
+        self.assertEqual(cm.exception.args[0], "Invalid command 'test_command'. Valid commands are: ccwc")
 
-    @patch('sys.argv', ['launch_command.py', 'wc', 'non_existing_file.txt'])
+    @patch('sys.argv', ['run_command.py', 'ccwc', 'non_existing_file.txt'])
     def test_main_with_non_existing_file(self):
         with self.assertRaises(SystemExit) as cm:
-            launch_command.main()
+            run_command.main()
         self.assertEqual(cm.exception.code, 1)
