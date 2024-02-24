@@ -17,8 +17,5 @@ class CommandsFactory:
         :return:
         """
         command_class = CommandsFactory.command_classes.get(command)
-        if command_class:
-            return command_class(options)
-        else:
-            raise KeyError(f"Invalid command name: {command}")
+        return command_class(options)
 

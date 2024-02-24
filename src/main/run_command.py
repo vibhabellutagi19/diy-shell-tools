@@ -1,8 +1,6 @@
-import os
-import subprocess
-import sys
-
 import argparse
+import os
+import sys
 
 from base_commands.command_factory import CommandsFactory
 from common.Utils import display_results
