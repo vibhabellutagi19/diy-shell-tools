@@ -44,9 +44,9 @@ def print_error_and_exit(error_msg):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', metavar='command', type=str, help="Command to execute (e.g., ccwc)")
-    parser.add_argument('options', metavar='options', type=str, nargs='*', help='Options for the command')
-    parser.add_argument('input_file', metavar='file', type=str, help='Input file to process')
+    parser.add_argument('command', type=validate_command, help='Command to execute (wc)')
+    parser.add_argument('options', nargs='*', help='Options for wc command')
+    parser.add_argument('input_file', help='Input file path')
 
     args = parser.parse_args()
     # If no arguments are provided, print help message and exit
