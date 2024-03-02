@@ -10,10 +10,10 @@ OPTIONS_ERROR_MSG = "Invalid option(s) ['{}']. Valid options are: {}"
 
 @dataclass
 class ValidOptionsLabels:
-    c: str = '-c'
-    l: str = '-l'
-    w: str = '-w'
-    m: str = '-m'
+    c: str = "-c"
+    l: str = "-l"
+    w: str = "-w"
+    m: str = "-m"
 
 
 class InvalidOptionError(Exception):
@@ -24,12 +24,19 @@ class WordCount(BaseCommand):
     def __init__(self, input_options):
         super().__init__(input_options)
         self.labels = ValidOptionsLabels()
-        self.valid_options = [self.labels.c, self.labels.l, self.labels.w, self.labels.m]
+        self.valid_options = [
+            self.labels.c,
+            self.labels.l,
+            self.labels.w,
+            self.labels.m,
+        ]
 
     def validate_options(self):
         for option in self.options:
             if option not in self.valid_options:
-                raise InvalidOptionError(OPTIONS_ERROR_MSG.format(option, ', '.join(self.valid_options)))
+                raise InvalidOptionError(
+                    OPTIONS_ERROR_MSG.format(option, ", ".join(self.valid_options))
+                )
 
     def execute(self, file_path: str) -> Union[int, List]:
         """Execute the word count command on a file
@@ -58,5 +65,3 @@ class WordCount(BaseCommand):
                     count_chars = stats.count_chars()
                     result.append(count_chars)
         return result
-
-

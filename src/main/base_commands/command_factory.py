@@ -5,7 +5,7 @@ from ..tools.wc.word_count import WordCount
 
 class CommandsFactory:
     command_classes = {
-        'ccwc': WordCount,
+        "ccwc": WordCount,
     }
 
     @staticmethod
@@ -18,4 +18,3 @@ class CommandsFactory:
         """
         command_class = CommandsFactory.command_classes.get(command)
         return command_class(options)
-
