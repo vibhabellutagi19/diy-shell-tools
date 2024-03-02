@@ -1,8 +1,8 @@
 """This module contains the WordCount class,
 which is responsible for executing the word count command on a file"""
 
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import Union, List
 
 from src.main.base_commands.base_command import BaseCommand
 from src.main.tools.wc.get_stats import Stats
@@ -45,7 +45,7 @@ class WordCount(BaseCommand):
                     OPTIONS_ERROR_MSG.format(option, ", ".join(self.valid_options))
                 )
 
-    def execute(self, file_path: str) -> Union[int, List]:
+    def execute(self, file_path: str) -> int | list:
         """Execute the word count command on a file
         :param file_path: The path of the file to be processed
         """

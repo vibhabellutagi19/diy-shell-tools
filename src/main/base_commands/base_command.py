@@ -1,18 +1,19 @@
 """ This module contains the BaseCommand class,
 which is an abstract class that defines the interface for all the"""
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import Tuple, List, Union
 
 
 class BaseCommand(ABC):
     """Base class for all commands"""
 
-    def __init__(self, options: List[str] = None):
+    def __init__(self, options: list[str] = None):
         self.options = options
 
     @abstractmethod
-    def execute(self, file_path: str) -> Union[int, Tuple]:
+    def execute(self, file_path: str) -> int | tuple:
         """Abstract method to execute the command"""
 
     @abstractmethod

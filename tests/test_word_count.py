@@ -18,17 +18,16 @@ class TestWordCount(unittest.TestCase):
                 "ccwc", self.c_options
             )
             self.wc_instance.validate_options()
-        except Exception as e:
+        except InvalidOptionError as e:
             self.fail(f"Unexpected exception: {e}")
-        else:
-            self.assertTrue(True, "No exception raised for valid options")
 
     def test_invalid_options(self):
+        """Test invalid options for the wc command"""
         self.invalid_options = ["-a"]
         self.invalid_wc_instance = CommandsFactory.create_command_instance(
             "ccwc", self.invalid_options
         )
-        """Test invalid options for the wc command"""
+
         with self.assertRaises(InvalidOptionError) as context:
             self.invalid_wc_instance.validate_options()
         expection_message = f"Invalid option(s) {self.invalid_options}. Valid options are: -c, -l, -w, -m"

@@ -5,6 +5,7 @@ main module to run the command line dyi-shell-tool
 import argparse
 import os
 import sys
+from typing import Any
 
 from src.main.base_commands.command_factory import CommandsFactory
 from src.main.common.utils import display_results
@@ -27,7 +28,7 @@ def check_file_exists(file_path: str) -> str:
     return file_path
 
 
-def validate_command(command) -> str:
+def validate_command(command: Any) -> str:
     """Validate the command is one of the valid base_commands. If not, raise an InvalidCommandError.
     :param command: The command to validate
     :return: The command if it is valid
@@ -40,7 +41,7 @@ def validate_command(command) -> str:
     return command
 
 
-def print_error_and_exit(error_msg):
+def print_error_and_exit(error_msg: str) -> None:
     """Print an error message and exit the program with a status of 1.
     :param error_msg: The error message to print
     """
