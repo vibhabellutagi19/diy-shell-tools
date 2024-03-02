@@ -1,6 +1,6 @@
 from typing import List
 
-from tools.wc.word_count import WordCount
+from ..tools.wc.word_count import WordCount
 
 
 class CommandsFactory:

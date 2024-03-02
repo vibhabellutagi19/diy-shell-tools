@@ -2,11 +2,12 @@ import unittest
 from io import StringIO
 from unittest.mock import patch
 
-import run_command
+import src.main.run_command as run_command
+from tests import TEST_ROOT
 
 
 class TestLaunchCommand(unittest.TestCase):
-    @patch('sys.argv', ['run_command.py', 'ccwc', f'resources/test.txt'])
+    @patch('sys.argv', ['run_command.py', 'ccwc', f'{TEST_ROOT}/resources/test.txt'])
     def test_main_with_valid_arguments(self):
         with patch('sys.stdout', new=StringIO()) as fake_out:
             run_command.main()
@@ -20,7 +21,7 @@ class TestLaunchCommand(unittest.TestCase):
             run_command.main()
         self.assertEqual(cm.exception.code, 2)
 
-    @patch('sys.argv', ['run_command.py', 'test_command', f'resources/test.txt'])
+    @patch('sys.argv', ['run_command.py', 'test_command', f'{TEST_ROOT}/resources/test.txt'])
     def test_main_with_invalid_command(self):
         with self.assertRaises(run_command.InvalidCommandError) as cm:
             run_command.main()

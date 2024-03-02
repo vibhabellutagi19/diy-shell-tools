@@ -1,13 +1,14 @@
 import unittest
 
-from base_commands.command_factory import CommandsFactory
-from tools.wc.word_count import InvalidOptionError
+from src.main.base_commands.command_factory import CommandsFactory
+from src.main.tools.wc.word_count import InvalidOptionError
+from tests import TEST_ROOT
 
 
 class TestWordCount(unittest.TestCase):
     def setUp(self):
         """Set up for the test"""
-        self.test_file = "resources/test.txt"
+        self.test_file = f"{TEST_ROOT}/resources/test.txt"
 
     def test_valid_options(self):
         """Test valid options for the wc command"""
@@ -26,6 +27,16 @@ class TestWordCount(unittest.TestCase):
         """Test invalid options for the wc command"""
         with self.assertRaises(InvalidOptionError) as context:
             self.invalid_wc_instance.validate_options()
+        expection_message = f"Invalid option(s) {self.invalid_options}. Valid options are: -c, -l, -w, -m"
+        self.assertEqual(expection_message, str(context.exception))
+
+    def test_invalid_option_error_from_execute(self):
+        self.invalid_options = ['-a']
+        self.invalid_wc_instance = CommandsFactory.create_command_instance('ccwc', self.invalid_options)
+
+        with self.assertRaises(InvalidOptionError) as context:
+            self.invalid_wc_instance.options = self.invalid_options
+            self.invalid_wc_instance.execute(self.test_file)
         expection_message = f"Invalid option(s) {self.invalid_options}. Valid options are: -c, -l, -w, -m"
         self.assertEqual(expection_message, str(context.exception))
 

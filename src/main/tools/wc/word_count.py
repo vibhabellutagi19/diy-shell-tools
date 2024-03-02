@@ -1,10 +1,9 @@
-import os
-import sys
 from dataclasses import dataclass
-from typing import Union, Tuple, List
+from dataclasses import dataclass
+from typing import Union, List
 
-from base_commands.base_command import BaseCommand
-from tools.wc.get_stats import Stats
+from src.main.base_commands.base_command import BaseCommand
+from src.main.tools.wc.get_stats import Stats
 
 OPTIONS_ERROR_MSG = "Invalid option(s) ['{}']. Valid options are: {}"
 
@@ -37,33 +36,27 @@ class WordCount(BaseCommand):
         :param file_path: The path of the file to be processed
         """
         result = []
-        try:
-            self.validate_options()
-            stats = Stats(file_path)
-            if not self.options:
-                count_bytes = stats.count_bytes()
-                count_lines = stats.count_lines()
-                count_words = stats.count_words()
-                result = [count_bytes, count_lines, count_words]
-            else:
-                for option in self.options:
-                    if option == self.labels.c:
-                        count_bytes = stats.count_bytes()
-                        result.append(count_bytes)
-                    if option == self.labels.l:
-                        count_lines = stats.count_lines()
-                        result.append(count_lines)
-                    if option == self.labels.w:
-                        count_words = stats.count_words()
-                        result.append(count_words)
-                    if option == self.labels.m:
-                        count_chars = stats.count_chars()
-                        result.append(count_chars)
-            return result
-
-        except InvalidOptionError as e:
-            print(e)
-            sys.exit(1)
-
+        self.validate_options()
+        stats = Stats(file_path)
+        if not self.options:
+            count_bytes = stats.count_bytes()
+            count_lines = stats.count_lines()
+            count_words = stats.count_words()
+            result = [count_bytes, count_lines, count_words]
+        else:
+            for option in self.options:
+                if option == self.labels.c:
+                    count_bytes = stats.count_bytes()
+                    result.append(count_bytes)
+                if option == self.labels.l:
+                    count_lines = stats.count_lines()
+                    result.append(count_lines)
+                if option == self.labels.w:
+                    count_words = stats.count_words()
+                    result.append(count_words)
+                if option == self.labels.m:
+                    count_chars = stats.count_chars()
+                    result.append(count_chars)
+        return result
 
 

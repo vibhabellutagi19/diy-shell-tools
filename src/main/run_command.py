@@ -2,8 +2,8 @@ import argparse
 import os
 import sys
 
-from base_commands.command_factory import CommandsFactory
-from common.Utils import display_results
+from src.main.base_commands.command_factory import CommandsFactory
+from src.main.common.Utils import display_results
 
 VALID_COMMANDS = ['ccwc']
 
