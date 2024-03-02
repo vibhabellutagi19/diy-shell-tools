@@ -1,5 +1,6 @@
 """ This module contains the BaseCommand class,
 which is an abstract class that defines the interface for all the"""
+
 from abc import ABC, abstractmethod
 from typing import Tuple, List, Union
 
