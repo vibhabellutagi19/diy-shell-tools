@@ -1,11 +1,13 @@
+""" This module is responsible for creating command instances usinf factory pattern """
 from typing import List
 
-from tools.wc.word_count import WordCount
+from ..tools.wc.word_count import WordCount
 
 
-class CommandsFactory:
+class CommandsFactory:  # pylint: disable=too-few-public-methods
+    """Class to create command instances"""
     command_classes = {
-        'ccwc': WordCount,
+        "ccwc": WordCount,
     }
 
     @staticmethod
@@ -18,4 +20,3 @@ class CommandsFactory:
         """
         command_class = CommandsFactory.command_classes.get(command)
         return command_class(options)
-
