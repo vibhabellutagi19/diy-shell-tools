@@ -1,15 +1,18 @@
+"""
+main module to run the command line dyi-shell-tool
+"""
 import argparse
 import os
 import sys
 
 from src.main.base_commands.command_factory import CommandsFactory
-from src.main.common.Utils import display_results
+from src.main.common.utils import display_results
 
 VALID_COMMANDS = ["ccwc"]
 
 
 class InvalidCommandError(Exception):
-    pass
+    """Exception raised for invalid commands"""
 
 
 def check_file_exists(file_path: str) -> str:
@@ -37,12 +40,17 @@ def validate_command(command) -> str:
 
 
 def print_error_and_exit(error_msg):
-    print(f"Usage: python run_command.py <command> <options> <input_file>")
-    print(f"Error: {error_msg}", file=sys.stderr)
+    """Print an error message and exit the program with a status of 1.
+    :param error_msg: The error message to print
+    """
+    print("Usage: python run_command.py <command> <options> <input_file>")
+    print("Error: %s", error_msg, file=sys.stderr)
     sys.exit(1)
 
 
 def main():
+    """Main function to run the dyi-shell-tool.
+    Parses the command line arguments and runs the command."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "command", type=validate_command, help="Command to execute (wc)"
@@ -51,7 +59,7 @@ def main():
     parser.add_argument("input_file", help="Input file path")
 
     args = parser.parse_args()
-    # If no arguments are provided, print help message and exit
+
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)

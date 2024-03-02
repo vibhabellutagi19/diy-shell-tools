@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+"""This module contains the WordCount class,
+which is responsible for executing the word count command on a file"""
 from dataclasses import dataclass
 from typing import Union, List
 
@@ -10,6 +11,7 @@ OPTIONS_ERROR_MSG = "Invalid option(s) ['{}']. Valid options are: {}"
 
 @dataclass
 class ValidOptionsLabels:
+    """Class to hold the valid options for the wc command"""
     c: str = "-c"
     l: str = "-l"
     w: str = "-w"
@@ -17,10 +19,11 @@ class ValidOptionsLabels:
 
 
 class InvalidOptionError(Exception):
-    pass
+    """Exception raised for invalid options"""
 
 
 class WordCount(BaseCommand):
+    """Class for executing the word count command on a file"""
     def __init__(self, input_options):
         super().__init__(input_options)
         self.labels = ValidOptionsLabels()
@@ -32,6 +35,7 @@ class WordCount(BaseCommand):
         ]
 
     def validate_options(self):
+        """Validate the options are valid. If not, raise an InvalidOptionError"""
         for option in self.options:
             if option not in self.valid_options:
                 raise InvalidOptionError(

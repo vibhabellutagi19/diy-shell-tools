@@ -1,7 +1,9 @@
+"""Setup file for dyi-shell-tools package."""
 from setuptools import setup
 
 
 def read_version():
+    """Read the version from the VERSION file."""
     with open("../../../VERSION", "r", encoding="utf-8") as version_file:
         return version_file.read().strip().replace("-", ".")
 
