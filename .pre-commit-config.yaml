@@ -17,7 +17,7 @@ repos:
     hooks:
         - id: pylint
           name: Pylint
-          entry: /Users/vibhavaribellutagi/.pyenv/shims/pylint
+          entry: pylint
           language: system
           types: [python]
           args:
