@@ -55,9 +55,9 @@ def main():
     Parses the command line arguments and runs the command."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "command", type=validate_command, help="Command to execute (wc)"
+        "command", type=validate_command, help="Command to execute (ccwc)"
     )
-    parser.add_argument("options", nargs="*", help="Options for wc command")
+    parser.add_argument("options", nargs="*", help="Options for ccwc command")
     parser.add_argument("input_file", help="Input file path")
 
     args = parser.parse_args()

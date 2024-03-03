@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from src.main.base_commands.base_command import BaseCommand
-from src.main.tools.wc.get_stats import Stats
+from src.main.tools.ccwc.get_stats import Stats
 
 OPTIONS_ERROR_MSG = "Invalid option(s) ['{}']. Valid options are: {}"
 
 
 @dataclass
 class ValidOptionsLabels:
-    """Class to hold the valid options for the wc command"""
+    """Class to hold the valid options for the ccwc command"""
 
     c: str = "-c"
     l: str = "-l"

@@ -1,4 +1,4 @@
-"""This module contains a class for calculating stats for a input files for the wc command"""
+"""This module contains a class for calculating stats for a input files for the ccwc command"""
 
 import os
 import re
