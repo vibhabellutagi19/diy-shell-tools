@@ -27,6 +27,6 @@ jobs:
       - name: Run formatter using Black
         run : tox -e formatter
       - name: Run linter using flake8
-        run: tox -e linter
+        run: tox -e lint
       - name: Run tox
         run: tox -e py
