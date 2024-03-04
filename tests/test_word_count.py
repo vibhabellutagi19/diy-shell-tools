@@ -1,7 +1,7 @@
 import unittest
 
 from src.main.base_commands.command_factory import CommandsFactory
-from src.main.tools.wc.word_count import InvalidOptionError
+from src.main.tools.ccwc.word_count import InvalidOptionError
 from tests import TEST_ROOT
 
 
@@ -11,7 +11,7 @@ class TestWordCount(unittest.TestCase):
         self.test_file = f"{TEST_ROOT}/resources/test.txt"
 
     def test_valid_options(self):
-        """Test valid options for the wc command"""
+        """Test valid options for the ccwc command"""
         try:
             self.c_options = ["-c"]
             self.wc_instance = CommandsFactory.create_command_instance(
@@ -22,7 +22,7 @@ class TestWordCount(unittest.TestCase):
             self.fail(f"Unexpected exception: {e}")
 
     def test_invalid_options(self):
-        """Test invalid options for the wc command"""
+        """Test invalid options for the ccwc command"""
         self.invalid_options = ["-a"]
         self.invalid_wc_instance = CommandsFactory.create_command_instance(
             "ccwc", self.invalid_options

@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from ..tools.wc.word_count import WordCount
+from ..tools.ccwc.word_count import WordCount
 
 
 class CommandsFactory:  # pylint: disable=too-few-public-methods

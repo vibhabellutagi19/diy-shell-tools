@@ -12,7 +12,7 @@ def read_version():
 setup(
     author="vibhavari bellutagi",
     author_email="vibhavari.bellutagi@gmail.com",
-    description="""A dyi shell tools, mimics the shell commands like wc, grep, ls etc""",
+    description="""A dyi shell tools, mimics the shell commands like ccwc, grep, ls etc""",
     name="dyi-shell-tools",
     version=read_version(),
 )

@@ -30,3 +30,8 @@ jobs:
         run: tox -e lint
       - name: Run tox
         run: tox -e py
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v2
+        with:
+            name: coverage-report
+            path: .coverage
