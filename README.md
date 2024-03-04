@@ -1,5 +1,10 @@
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-31013/)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/VibhavariBellutagi19/diy-shell-tools/.github%2Fworkflows%2Fci.yml?branch=main&event=push&style=plastic)
+![Codecov (with branch)](https://img.shields.io/codecov/c/github/VibhavariBellutagi19/diy-shell-tools/main?style=plastic&cacheSeconds=3600)
+
 # diy-shell-tools
 Welcome to `diy-shell-tools`, a project where you can build and customise your own command-line utilities!
+
     
 ## Table of contents
 

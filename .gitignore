@@ -31,5 +31,3 @@ MANIFEST
 .pytest_cache/
 .tox
 htmlcov
-# coverage
-.coverage
