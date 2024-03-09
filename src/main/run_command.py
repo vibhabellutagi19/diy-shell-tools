@@ -58,7 +58,7 @@ def main():
         "command", type=validate_command, help="Command to execute (ccwc)"
     )
     parser.add_argument("options", nargs="*", help="Options for ccwc command")
-    parser.add_argument("input_file", help="Input file path")
+    parser.add_argument("input_file", nargs="?", help="Input file path")
 
     args = parser.parse_args()
 
@@ -68,7 +68,8 @@ def main():
 
     try:
         validate_command(args.command)
-        check_file_exists(args.input_file)
+        if args.input_file:
+            check_file_exists(args.input_file)
     except (InvalidCommandError, FileNotFoundError) as e:
         print_error_and_exit(str(e))
 
