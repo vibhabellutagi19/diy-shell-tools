@@ -5,6 +5,8 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
+from src.main.input_source.base_source import BaseSource
+
 
 class BaseCommand(ABC):
     """Base class for all commands"""
@@ -13,7 +15,7 @@ class BaseCommand(ABC):
         self.options = options
 
     @abstractmethod
-    def execute(self, file_path: str) -> int | tuple:
+    def execute(self, input_source: BaseSource) -> int | tuple:
         """Abstract method to execute the command"""
 
     @abstractmethod

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from src.main.base_commands.base_command import BaseCommand
+from src.main.input_source.base_source import BaseSource
 from src.main.tools.ccwc.get_stats import Stats
 
 OPTIONS_ERROR_MSG = "Invalid option(s) ['{}']. Valid options are: {}"
@@ -45,13 +46,14 @@ class WordCount(BaseCommand):
                     OPTIONS_ERROR_MSG.format(option, ", ".join(self.valid_options))
                 )
 
-    def execute(self, file_path: str) -> int | list:
+    def execute(self, input_source: BaseSource) -> int | list:
         """Execute the word count command on a file
-        :param file_path: The path of the file to be processed
+        :input_source: BaseSource: The input source
+        :returns: int | list: The result of the command
         """
         result = []
         self.validate_options()
-        stats = Stats(file_path)
+        stats = Stats(input_source)
         if not self.options:
             count_bytes = stats.count_bytes()
             count_lines = stats.count_lines()

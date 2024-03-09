@@ -7,4 +7,5 @@ class StdIn(BaseSource):
 
     @abstractmethod
     def get_data(self):
-        return sys.stdin.readlines()
+        contents = sys.stdin.readlines()
+        return contents

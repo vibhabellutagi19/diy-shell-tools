@@ -9,4 +9,5 @@ class FileSource(BaseSource):
     @abstractmethod
     def get_data(self):
         with open(self.path, "r", encoding="utf-8") as file:
-            return file.readlines()
+            content = file.readlines()
+            return content

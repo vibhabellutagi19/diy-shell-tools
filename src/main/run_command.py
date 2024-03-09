@@ -9,6 +9,7 @@ from typing import Any
 
 from src.main.base_commands.command_factory import CommandsFactory
 from src.main.common.utils import display_results
+from src.main.input_source.input_source_factory import InputSourceFactory
 
 VALID_COMMANDS = ["ccwc"]
 
@@ -76,7 +77,11 @@ def main():
     command_instance = CommandsFactory.create_command_instance(
         args.command, args.options
     )
-    result = command_instance.execute(args.input_file)
+
+    input_instance = InputSourceFactory.create_source_instance(
+        "file" if args.input_file else "stdin"
+    )
+    result = command_instance.execute(input_instance)
     display_results(result, args.input_file)
 
 
