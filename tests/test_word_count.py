@@ -1,8 +1,11 @@
+from io import StringIO
 import unittest
+from unittest.mock import patch
 
 from src.main.base_commands.command_factory import CommandsFactory
 from src.main.input_source.base_source import BaseSource
 from src.main.input_source.input_source_factory import InputSourceFactory
+from src.main.tools.ccwc.get_stats import Stats
 from src.main.tools.ccwc.word_count import InvalidOptionError
 from tests import TEST_ROOT
 
@@ -90,6 +93,13 @@ class TestWordCount(unittest.TestCase):
         expected_output = 332197
         actual_output = self.wc_instance.execute(self.test_file_source)[0]
         self.assertEqual(expected_output, actual_output)
+
+    @patch("sys.stdin", StringIO("line1 line2 line3"))
+    def test_count_bytes_without_file_path(self):
+        """Test count_bytes method without a file path"""
+        get_stats = Stats(self.test_stdin_source)
+        result = get_stats.count_bytes()
+        self.assertEqual(result, 17)
 
     def test_for_default_options(self):
         """Test for no options: no options are provided, which is the equivalent to the -c, -l and -w options"""
