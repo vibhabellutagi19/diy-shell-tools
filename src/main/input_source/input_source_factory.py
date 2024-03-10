@@ -10,11 +10,12 @@ class InputSourceFactory:  # pylint: disable=too-few-public-methods
     sources = {"file": FileSource, "stdin": StdIn}
 
     @staticmethod
-    def create_source_instance(source: Any) -> BaseSource:
+    def create_source_instance(source: Any, path: str = None) -> BaseSource:
         """
         Creates source instance
         :param source: The source to get the data from
+        :param path: The path to the file
         :return:
         """
         source_class = InputSourceFactory.sources.get(source)
-        return source_class()
+        return source_class(path) if path else source_class()
