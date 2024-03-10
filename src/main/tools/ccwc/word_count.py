@@ -62,12 +62,15 @@ class WordCount(BaseCommand):
         else:
             for option in self.options:
                 if option == self.labels.c:
+                    print("counting bytes")
                     count_bytes = stats.count_bytes()
                     result.append(count_bytes)
                 if option == self.labels.l:
+                    print("counting lines")
                     count_lines = stats.count_lines()
                     result.append(count_lines)
                 if option == self.labels.w:
+                    print("counting words")
                     count_words = stats.count_words()
                     result.append(count_words)
                 if option == self.labels.m:

@@ -13,13 +13,13 @@ class InvalidCommandError(Exception):
     """Exception raised for invalid commands"""
 
 
-def display_results(result: list, file_path: str) -> None:
+def display_results(results: list, file_path: str) -> None:
     """Display the results of the command
-    :param result: The result of the command
+    :param results: The result of the command
     :param file_path: The input file"""
 
-    for option in result:
-        print(option, end=" ")
+    for result in results:
+        (print(result, end=" ") if result != results[-1] else print(result))
     if file_path:
         file_name = file_path.split("/")[-1]
         print(f"{file_name}")

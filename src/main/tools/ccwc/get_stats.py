@@ -18,7 +18,8 @@ class Stats:
         if self.file_path:
             self.file_stats = os.stat(self.file_path).st_size
         else:
-            self.file_stats = len(self.contents)
+            input_string = "".join(self.contents)
+            self.file_stats = len(input_string.encode("utf-8"))
         return self.file_stats
 
     def count_lines(self) -> int:
