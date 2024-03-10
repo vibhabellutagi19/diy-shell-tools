@@ -28,7 +28,9 @@ def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         usage="python run_command.py <command> [<options>] [<input_file>]"
     )
-    parser.add_argument("command", type=str, help="Command to execute (ccwc)")
+    parser.add_argument(
+        "command", type=validate_command, help="Command to execute (ccwc)"
+    )
     parser.add_argument("options", nargs="*", help="Options for ccwc command")
     parser.add_argument("input_file", nargs="?", help="Input file path")
 

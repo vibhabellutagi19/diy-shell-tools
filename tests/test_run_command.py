@@ -85,11 +85,9 @@ class TestRunCommand(unittest.TestCase):
     def test_parse_arguments_missing_input_file(self):
         """Test parse_arguments function with missing input file"""
         with patch("sys.stderr", new_callable=StringIO) as mock_stderr:
-            with patch(
-                "sys.argv", ["run_command.py", "ccwc", "-o", "option1", "option2"]
-            ):
+            with patch("sys.argv", ["run_command.py", "ccwc", "-option1", "-option2"]):
                 args = parse_arguments()
                 self.assertEqual(args.command, "ccwc")
-                self.assertEqual(args.options, ["option1", "option2"])
+                self.assertEqual(args.options, ["-option1", "-option2"])
                 self.assertIsNone(args.input_file)
                 self.assertEqual(mock_stderr.getvalue(), "")
