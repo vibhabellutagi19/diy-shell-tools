@@ -110,6 +110,7 @@ disable=
     too-few-public-methods,
     # handled by black
     format,
+    expression-not-assigned,
     # We anticipate #3512 where it will become optional
     fixme,
     consider-using-assignment-expr,

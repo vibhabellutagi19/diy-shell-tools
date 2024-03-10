@@ -3,42 +3,15 @@ main module to run the command line dyi-shell-tool
 """
 
 import argparse
-import os
 import sys
-from typing import Any
 
-from src.main.base_commands.command_factory import CommandsFactory
-from src.main.common.utils import display_results
-
-VALID_COMMANDS = ["ccwc"]
-
-
-class InvalidCommandError(Exception):
-    """Exception raised for invalid commands"""
-
-
-def check_file_exists(file_path: str) -> str:
-    """Check if the file exists. If not, raise a FileNotFoundError.
-    :param file_path: The file path to check
-    :return: The file path if it exists
-    :raises FileNotFoundError: If the file does not exist
-    """
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"File '{file_path}' not found")
-    return file_path
-
-
-def validate_command(command: Any) -> str:
-    """Validate the command is one of the valid base_commands. If not, raise an InvalidCommandError.
-    :param command: The command to validate
-    :return: The command if it is valid
-    :raises InvalidCommandError: If the command is not valid
-    """
-    if command not in VALID_COMMANDS:
-        raise InvalidCommandError(
-            f"Invalid command '{command}'. Valid commands are: {', '.join(VALID_COMMANDS)}"
-        )
-    return command
+from src.main.common.utils import (
+    check_file_exists,
+    get_command_instance,
+    get_input_instance,
+    display_results,
+    validate_command,
+)
 
 
 def print_error_and_exit(error_msg: str) -> None:
@@ -50,32 +23,57 @@ def print_error_and_exit(error_msg: str) -> None:
     sys.exit(1)
 
 
-def main():
-    """Main function to run the dyi-shell-tool.
-    Parses the command line arguments and runs the command."""
-    parser = argparse.ArgumentParser()
+def parse_arguments() -> argparse.Namespace:
+    """Parse the command line arguments and return the parsed arguments."""
+    parser = argparse.ArgumentParser(
+        usage="python run_command.py <command> [<options>] [<input_file>]"
+    )
     parser.add_argument(
         "command", type=validate_command, help="Command to execute (ccwc)"
     )
     parser.add_argument("options", nargs="*", help="Options for ccwc command")
-    parser.add_argument("input_file", help="Input file path")
+    parser.add_argument("input_file", nargs="?", help="Input file path")
 
-    args = parser.parse_args()
+    try:
+        args, unknown = parser.parse_known_args()
+        options = []
+        input_file = None
+        for arg in args.options + unknown:
+            if arg.startswith("-"):
+                options.append(arg)
+            else:
+                input_file = arg
+                break
+    except SystemExit as e:
+        print_error_and_exit(e)
+
+    args.options = options
+    args.input_file = input_file
 
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
 
-    try:
-        validate_command(args.command)
-        check_file_exists(args.input_file)
-    except (InvalidCommandError, FileNotFoundError) as e:
-        print_error_and_exit(str(e))
+    return args
 
-    command_instance = CommandsFactory.create_command_instance(
-        args.command, args.options
-    )
-    result = command_instance.execute(args.input_file)
+
+def main():
+    """Main function to run the dyi-shell-tool.
+    Parses the command line arguments and runs the command."""
+    args = parse_arguments()
+
+    print(args)
+
+    # validate the command and input file
+
+    validate_command(args.command)
+    if args.input_file:
+        check_file_exists(args.input_file)
+
+    # create instances
+    command_instance = get_command_instance(args)
+    input_instance = get_input_instance(args.input_file)
+    result = command_instance.execute(input_instance)
     display_results(result, args.input_file)
 
 
