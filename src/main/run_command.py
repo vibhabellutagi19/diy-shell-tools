@@ -7,8 +7,8 @@ import sys
 
 from src.main.common.utils import (
     check_file_exists,
-    create_command_instance,
-    create_input_instance,
+    get_command_instance,
+    get_input_instance,
     display_results,
     validate_command,
 )
@@ -71,8 +71,8 @@ def main():
         check_file_exists(args.input_file)
 
     # create instances
-    command_instance = create_command_instance(args)
-    input_instance = create_input_instance(args, args.input_file)
+    command_instance = get_command_instance(args)
+    input_instance = get_input_instance(args.input_file)
     result = command_instance.execute(input_instance)
     display_results(result, args.input_file)
 

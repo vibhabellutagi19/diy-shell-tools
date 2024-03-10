@@ -49,12 +49,12 @@ def validate_command(command: Any) -> str:
     return command
 
 
-def create_command_instance(args):
+def get_command_instance(args):
     """Create an instance of the command based on the parsed arguments."""
     return CommandsFactory.create_command_instance(args.command, args.options)
 
 
-def create_input_instance(args, input_file: str = None):
+def get_input_instance(input_file: str = None):
     """Create an instance of the input source based on the parsed arguments."""
-    source_type = "file" if args.input_file else "stdin"
+    source_type = "file" if input_file else "stdin"
     return InputSourceFactory.create_source_instance(source_type, input_file)
