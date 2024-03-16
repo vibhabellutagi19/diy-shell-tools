@@ -1,5 +1,14 @@
+import re
+
+
 class GrepSearch:
-    def search_text(self, expression: str, input_text: str):
+    def search_text(self, expression: str, input_text: list):
+        results = []
         if expression == "":
             return input_text
-        return None
+
+        for line in input_text:
+            line = line.strip()
+            if re.search(expression, line):
+                results.append(line)
+        return results
