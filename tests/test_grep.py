@@ -6,7 +6,7 @@ from src.main.tools.ccgrep.search import GrepSearch
 # todo:
 # 1.
 class TestGrep(unittest.TestCase):
-    def test_grep_with_empty_expression(self):
+    def test_grep_search_with_empty_expression(self):
         """Test grep with empty expression."""
         test_input_text = ["This is a test"]
         grep_search = GrepSearch()
