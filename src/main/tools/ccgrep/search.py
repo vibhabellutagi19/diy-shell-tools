@@ -2,7 +2,7 @@ import re
 
 
 class GrepSearch:
-    def search_text(self, expression: str, input_text: list):
+    def search_text(self, expression: str, input_text: list) -> list:
         results = []
         if expression == "":
             return input_text

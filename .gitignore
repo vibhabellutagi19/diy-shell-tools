@@ -31,3 +31,4 @@ MANIFEST
 .pytest_cache/
 .tox
 htmlcov
+.vscode
